@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const shortURL = require('./shortURL.js');
+const shortURL = require('../modules/shortURL.js');
 
 // router.get('/', (req, res) => {
 //     res.send("This api is reserved for Quora Clone");
