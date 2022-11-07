@@ -15,20 +15,18 @@ const LinkResult = ({ inputValue }) => {
             "Content-Type":"application/json"
         }
     }
-      const body = {
+    const body = {
       realUrl: inputValue
     }
+    setLoading(true);
       await axios.post('http://localhost:5000/shorturl', body, config).then((res) =>
             {
-                console.log(res.data);
-                alert(res.data.message);
-                // navigate('/');
+              console.log(res.data);
+              setShortenLink("yash.sh/"+res.data.encodeURI);
+
             }).catch((e) => {
                 console.log("Error :- ", e);
             })
-      // setLoading(true);
-      // const response = await axios(`https://api.shrtco.de/v2/shorten?url=${inputValue}`);
-      // setShortenLink(response.data.result.full_short_link);
     }
     catch (error) {
       setError(error);
