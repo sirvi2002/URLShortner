@@ -1,16 +1,15 @@
 const express = require('express');
 const router = express.Router();
-
+const shortURL = require('../models/shortURLs');
 let universalCounter = 10000;
 
 router.post('/', async (req, res) => {
     // console.log(req.body);
-    let inputValue = req.body.realUrl;
     // console.log(inputValue);
-
     try {
+        let inputValue = req.body.realUrl;
         let characterSet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-        encoded = ""
+        let encoded = ""
         let base = characterSet.length;
         let num = universalCounter;
         while (num > 0) {
@@ -18,14 +17,29 @@ router.post('/', async (req, res) => {
             num = Math.floor(num / base);
             encoded = (characterSet[r]) + encoded;
         }
-        let encodedURL = ({ encodeURI: encoded });
-        res.json(encodedURL);
-        universalCounter=universalCounter+1;
-    } catch (e)
-    {
+
+        await shortURL.create({
+                encodeURL: encoded,
+                realURL: inputValue,
+                counter: universalCounter
+            })
+            .then(() => {
+                universalCounter = universalCounter + 1;
+                res.status(201).json({
+                    encodeURL: encoded,
+                });
+            })
+            .catch((e) => {
+                res.status(400).send({
+                    status: false,
+                    message: "Bad request",
+                });
+            });
+        
+    } catch (e) {
         res.status(500).send({
             status: false,
-            message : "Internal Server Error"
+            message: "Internal Server Error"
         })
     }
 });

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express(); 
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const mongoose = require('mongoose');
 
 const PORT = 5000;
 const router = require('./routes');
@@ -19,6 +20,10 @@ app.use((req, res, next) => {
     next();
 });
 
+//mongoose connection
+mongoose.connect('mongodb://localhost/shortURLs', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log("Connected to MongoDB"))
+    .catch((err) => console.log("Error connecting to MongoDB", err));
 
 //routes
 app.use('/', router)
