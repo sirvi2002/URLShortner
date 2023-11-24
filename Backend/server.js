@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 });
 
 //mongoose connection
-mongoose.connect('mongodb://localhost/shortURLs', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://0.0.0.0:27017/shortURLs', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("Connected to MongoDB"))
     .catch((err) => console.log("Error connecting to MongoDB", err));
 

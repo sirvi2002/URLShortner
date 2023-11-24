@@ -22,7 +22,7 @@ const LinkResult = ({ inputValue }) => {
       await axios.post('http://localhost:5000/shorturl', body, config).then((res) =>
       {
               console.log(res.data);
-              setShortenLink("yash.sh/"+res.data.encodeURL);
+        setShortenLink("manoj.sh/" + res.data.encodeURL);
 
             }).catch((e) => {
                 console.log("Error :- ", e);

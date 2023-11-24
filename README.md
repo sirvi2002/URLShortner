@@ -16,9 +16,6 @@
   </li>
 </ul> 
 
-![Screenshot1](https://github.com/the-yash-rajput/url-shortener/blob/main/public/s1.jpeg)
-![Screensho2](https://github.com/the-yash-rajput/url-shortener/blob/main/public/s2.jpeg)
-
 ## Available Scripts
 
 In the project directory, you can run:
